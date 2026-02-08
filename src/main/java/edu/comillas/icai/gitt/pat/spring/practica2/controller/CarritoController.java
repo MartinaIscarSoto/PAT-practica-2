@@ -50,6 +50,12 @@ public class CarritoController {
                     HttpStatus.NOT_FOUND, "No se puede actualizar: El carrito con idCarrito " + idCarrito + " no existe."
             );
         }
+        if(carrito.getIdCarrito() != idCarrito){
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Cambio no permitido: El idCarrito no coincide con la URL"
+            );
+
+        }
         carritos.put( idCarrito, carrito);
         return carrito;
     }
