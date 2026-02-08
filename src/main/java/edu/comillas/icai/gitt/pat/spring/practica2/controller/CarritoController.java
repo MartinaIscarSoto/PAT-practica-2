@@ -3,6 +3,7 @@ package edu.comillas.icai.gitt.pat.spring.practica2.controller;
 import edu.comillas.icai.gitt.pat.spring.practica2.model.Carrito;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -10,7 +11,9 @@ import java.util.Map;
 
 @RestController
 public class CarritoController {
-    private final Map<Integer, Carrito> carritos = new HashMap<>();
+    private final Map<Integer, Carrito> carritos = new HashMap<>(Map.of(
+            1, new Carrito(1,1, "Camiseta", 4, 200),
+             2, new Carrito(2,3,"Pijama", 1, 15)));
 
     @GetMapping("/api/carrito")
     public Collection<Carrito> getCarrito() {
@@ -29,6 +32,9 @@ public class CarritoController {
 
     @GetMapping("/api/carrito/{idCarrito}")
     public Carrito getCarrito(@PathVariable int idCarrito) {
+        if(carritos.containsKey(idCarrito)){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El carrito no existe, prueba buscar con otro idCarrito");
+        }
         return carritos.get(idCarrito);
     }
 
@@ -39,8 +45,9 @@ public class CarritoController {
 
     @PutMapping("/api/carrito/{idCarrito}")
     public Carrito modificarCarrito(@PathVariable int idCarrito, @RequestBody Carrito carrito){
-         carritos.put(idCarrito, carrito);
-         return carrito;
+         carrito.setIdCarrito(idCarrito);
+         carritos.put( idCarrito, carrito);
+        return carrito;
     }
 
 }
