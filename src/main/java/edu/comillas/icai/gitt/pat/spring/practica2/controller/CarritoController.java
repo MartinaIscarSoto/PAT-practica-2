@@ -36,7 +36,10 @@ public class CarritoController {
     }
     //El RequestBody mapea a un fromato JSON las proppiedades de Carrito
 
-
+    @GetMapping("/api/carrito/{idCarrito}")
+    public Carrito getCarrito(@PathVariable int idCarrito) {
+        return carritos.get(idCarrito);
+    }
 //    @PostMapping("/api/contadores")
 //    @ResponseStatus(HttpStatus.CREATED)
 //    public ModeloContador crea(@RequestBody ModeloContador contadorNuevo) {
