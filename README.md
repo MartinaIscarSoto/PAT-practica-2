@@ -1,6 +1,8 @@
 # README de la práctica 2
 Tabla con la descripción de cada endpoint (método, ruta, cuerpo, descripción, posibles respuestas)
 Hay que crear un CRUD (Create, Read, Update, Delete)
+
+Para facilitar a la hora de realizar la práctica se inicializa el HashMap con dos valores iniciales, con id's 1 y 2
 ## CRUD
 Create - POST: /api/carrito (Crear carrito)
 Read - GET: /api/carrito (Ver listado de carritos)
@@ -29,10 +31,8 @@ EJ:
 ## Práctica 2: pasos y lógica
 ### Esto sirve como una guía para entender los pasos que se han seguido para elaborar la práctica, así como lógica implementada
 ##### Opcional:
-Introducir gestión de errores - si no hay nada que borrar que me ponga un mensaje
-crear lógica que para cada idArticulo s una descripción distinta
-hacer que el Interger que es la clave del HashMap cambie con el idCarrito
--Seguridad
+- Introducir gestión de errores - si no hay nada que borrar que me ponga un mensaje
+- Validaciones
 
 #### Primer commit:
   Clase Practica2Application
@@ -42,3 +42,5 @@ hacer que el Interger que es la clave del HashMap cambie con el idCarrito
   Borrar un carrito por idCarrito. Delete
 #### Tercer Commit
   Modificar un carrito por idCarrito. Put
+#### Resto de Commits
+Para modificar cambios en el README y para añadir funcionalidades adicionales donde se implementan validaciones y respuestas de error
