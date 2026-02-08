@@ -13,7 +13,8 @@ import java.util.Map;
 public class CarritoController {
     private final Map<Integer, Carrito> carritos = new HashMap<>(Map.of(
             1, new Carrito(1,1, "Camiseta", 4, 200),
-             2, new Carrito(2,3,"Pijama", 1, 15)));
+            2, new Carrito(2,3,"Pijama", 1, 15)));
+    // inicialización del HashMap para facilitar hacer pruebas durante el desarrollo de la práctica.
 
     @GetMapping("/api/carrito")
     public Collection<Carrito> getCarrito() {
@@ -45,16 +46,15 @@ public class CarritoController {
 
     @PutMapping("/api/carrito/{idCarrito}")
     public Carrito modificarCarrito(@PathVariable int idCarrito, @RequestBody Carrito carrito){
-        if (!carritos.containsKey(idCarrito)) {
+        if (!carritos.containsKey(idCarrito)) { //dentro del if son validaciones
             throw new ResponseStatusException(
                     HttpStatus.NOT_FOUND, "No se puede actualizar: El carrito con idCarrito " + idCarrito + " no existe."
             );
         }
-        if(carrito.getIdCarrito() != idCarrito){
+        if(carrito.getIdCarrito() != idCarrito){ //dentro del if son validaciones
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Cambio no permitido: El idCarrito no coincide con la URL"
             );
-
         }
         carritos.put( idCarrito, carrito);
         return carrito;

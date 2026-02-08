@@ -1,7 +1,8 @@
 package edu.comillas.icai.gitt.pat.spring.practica2.model;
 
-public class Carrito {
+import org.jetbrains.annotations.NotNull;
 
+public class Carrito {
     private int idCarrito;
     private int idArticulo;
     private String descripcion;
