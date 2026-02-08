@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /*
@@ -39,6 +38,11 @@ public class CarritoController {
     @GetMapping("/api/carrito/{idCarrito}")
     public Carrito getCarrito(@PathVariable int idCarrito) {
         return carritos.get(idCarrito);
+    }
+
+    @DeleteMapping("/api/carrito/{idCarrito}")
+    public void borrarCarrito(@PathVariable int idCarrito) {
+        carritos.remove(idCarrito);
     }
 //    @PostMapping("/api/contadores")
 //    @ResponseStatus(HttpStatus.CREATED)
