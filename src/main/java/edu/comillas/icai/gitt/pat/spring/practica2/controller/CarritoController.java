@@ -45,8 +45,12 @@ public class CarritoController {
 
     @PutMapping("/api/carrito/{idCarrito}")
     public Carrito modificarCarrito(@PathVariable int idCarrito, @RequestBody Carrito carrito){
-         carrito.setIdCarrito(idCarrito);
-         carritos.put( idCarrito, carrito);
+        if (!carritos.containsKey(idCarrito)) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "No se puede actualizar: El carrito con idCarrito " + idCarrito + " no existe."
+            );
+        }
+        carritos.put( idCarrito, carrito);
         return carrito;
     }
 
