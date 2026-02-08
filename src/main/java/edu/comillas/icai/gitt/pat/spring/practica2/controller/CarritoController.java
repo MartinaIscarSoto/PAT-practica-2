@@ -32,7 +32,7 @@ public class CarritoController {
 
     @GetMapping("/api/carrito/{idCarrito}")
     public Carrito getCarrito(@PathVariable int idCarrito) {
-        if(carritos.containsKey(idCarrito)){
+        if(!carritos.containsKey(idCarrito)){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El carrito no existe, prueba buscar con otro idCarrito");
         }
         return carritos.get(idCarrito);
