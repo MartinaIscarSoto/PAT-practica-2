@@ -47,7 +47,7 @@ public class CarritoController {
 
     @PostMapping("/{id}/lineas")
     public ResponseEntity<?> añadirLinea(@PathVariable Integer id, @RequestBody LineaCarrito linea) {
-        //no s eha hecho en un manejador global de errores, pero lo hacemos aquí para ejemplificar como
+        //no se ha hecho en un manejador global de errores, pero lo hacemos aquí para ejemplificar como
         // se hace el manejo de errores y además tiene trazas para explicar el error
         try {
             Carrito actualizado = carritoService.añadirLinea(id, linea);
