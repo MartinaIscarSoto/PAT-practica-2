@@ -1,63 +1,39 @@
 package edu.comillas.icai.gitt.pat.spring.practica2.controller;
 
 import edu.comillas.icai.gitt.pat.spring.practica2.model.Carrito;
-import org.springframework.http.HttpStatus;
+import edu.comillas.icai.gitt.pat.spring.practica2.model.LineaCarrito;
+import edu.comillas.icai.gitt.pat.spring.practica2.service.CarritoService;
+import jakarta.validation.Valid; // ¡Importante!
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 @RestController
+@RequestMapping("/api/carrito")
 public class CarritoController {
-    private final Map<Integer, Carrito> carritos = new HashMap<>(Map.of(
-            1, new Carrito(1,1, "Camiseta", 4, 200),
-            2, new Carrito(2,3,"Pijama", 1, 15)));
-    // inicialización del HashMap para facilitar hacer pruebas durante el desarrollo de la práctica.
 
-    @GetMapping("/api/carrito")
-    public Collection<Carrito> getCarrito() {
-        //Carrito test = new Carrito(1, 1, "Camiseta", 4, 40);
-        //carritos.put("1", test);
-        return carritos.values();
+    @Autowired
+    private CarritoService carritoService;
+
+    @GetMapping
+    public List<Carrito> getAll() {
+        return carritoService.obtenerTodos();
+    }
+    @PostMapping
+    public Carrito crear(@Valid @RequestBody Carrito carrito) {
+        // @Valid obliga a que el JSON cumpla las reglas de la Entity
+        return carritoService.crearCarrito(carrito);
     }
 
-    @PostMapping("/api/carrito")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Carrito creaCarrito(@RequestBody Carrito carrito) {
-        carritos.put(carrito.getIdCarrito(), carrito);
-        return carrito;
-    }
-    //El RequestBody mapea a un fromato JSON las proppiedades de Carrito
-
-    @GetMapping("/api/carrito/{idCarrito}")
-    public Carrito getCarrito(@PathVariable int idCarrito) {
-        if(!carritos.containsKey(idCarrito)){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "El carrito no existe, prueba buscar con otro idCarrito");
-        }
-        return carritos.get(idCarrito);
+    @PostMapping("/{id}/lineas")
+    public Carrito añadirLinea(@PathVariable Integer id, @Valid @RequestBody LineaCarrito linea) {
+        // También validamos la línea antes de añadirla
+        return carritoService.añadirLinea(id, linea);
     }
 
-    @DeleteMapping("/api/carrito/{idCarrito}")
-    public void borrarCarrito(@PathVariable int idCarrito) {
-        carritos.remove(idCarrito);
-    }
-
-    @PutMapping("/api/carrito/{idCarrito}")
-    public Carrito modificarCarrito(@PathVariable int idCarrito, @RequestBody Carrito carrito){
-        if (!carritos.containsKey(idCarrito)) { //dentro del if son validaciones
-            throw new ResponseStatusException(
-                    HttpStatus.NOT_FOUND, "No se puede actualizar: El carrito con idCarrito " + idCarrito + " no existe."
-            );
-        }
-        if(carrito.getIdCarrito() != idCarrito){ //dentro del if son validaciones
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Cambio no permitido: El idCarrito no coincide con la URL"
-            );
-        }
-        carritos.put( idCarrito, carrito);
-        return carrito;
+    @DeleteMapping("/{id}/lineas/{idLinea}")
+    public void borrarLinea(@PathVariable Integer id, @PathVariable Integer idLinea) {
+        carritoService.eliminarLinea(id, idLinea);
     }
 }
-
