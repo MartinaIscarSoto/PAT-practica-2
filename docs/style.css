@@ -1,4 +1,8 @@
-::backdrop
+body
 {
-  background: rgba(0, 0, 0, 0.5);
+  background:beige;
+}
+title
+{
+  color:green;
 }
