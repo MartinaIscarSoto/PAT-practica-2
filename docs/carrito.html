@@ -1,21 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Verde | Carrito</title>
     <link rel="stylesheet" href="style.css">
-    <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="carrito.css">
 </head>
 
 <body>
-    <header>
-        <h1>Mi Carrito de Compras</h1>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Mercado Verde</a>
+            <nav aria-label="Principal">
+                <ul class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="catalogo.html">Catálogo</a></li>
+                    <li><a aria-current="page" href="carrito.html">Carrito</a></li>
+                    <li><a href="compra.html">Comprar</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
+
+    <main class="section">
+        <div class="container">
+            <h1>Mi carrito de compra</h1>
+            <section class="table-section">
+                <div class="table-div">
+                    <table>
+                        <caption>Productos actualmente guardados en el carrito</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Caja de verduras</th>
+                                <td>15,90 €</td>
+                                <td>1</td>
+                                <td>15,90 €</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pack desayuno</th>
+                                <td>10,90 €</td>
+                                <td>1</td>
+                                <td>10,90 €</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Bolsa reutilizable</th>
+                                <td>0,60 €</td>
+                                <td>1</td>
+                                <td>0,60 €</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th scope="row" colspan="3">Total con envío</th>
+                                <td>31,30 €</td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
 </body>
-<footer>
-    <p>&copy; 2024 Mi Tienda en Línea. Todos los derechos reservados.</p>
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>&copy; 2026 Mercado Verde. Carrito actualizado con promociones activas.</p>
+        <a href="index.html">Volver al inicio</a>
+    </div>
 </footer>
+
 </html>

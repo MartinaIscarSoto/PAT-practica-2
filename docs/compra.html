@@ -1,35 +1,123 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Verde | Compra</title>
     <link rel="stylesheet" href="style.css">
-    <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="carrito.css">
 </head>
 
 <body>
-    <header>
-        <h1>Mi Carrito de Compras</h1>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Mercado Verde</a>
+            <nav aria-label="Principal">
+                <ul class="nav-list">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a aria-current="page" href="compra.html">Comprar</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-     <form action="/pagar" method="post">
-        <h2>Formulario de Pago</h2>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
+    <main class="section">
+        <div class="container">
+            <h1>Finalizar compra</h1>
+            <p class="section-intro">Termina tu compra completando el formulario.</p>
 
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
+            <div class="checkout-grid">
+                <section class="summary-card">
+                    <h2>Resumen del pedido</h2>
+                    <ul class="summary-list">
+                        <li>3 productos en el carrito</li>
+                        <li>Entrega prevista en 24/48 horas</li>
+                        <li>Descuento aplicado por compra semanal</li>
+                    </ul>
+                    <p class="price-total">Total estimado: <strong>27,40 €</strong></p>
+                    <a class="button button-secondary" href="carrito.html">Volver al carrito</a>
+                </section>
 
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" required>
+                <form class="checkout-form" action="#" method="get">
+                    <fieldset>
+                        <legend>Datos de contacto</legend>
 
-        <button type="submit">Proceder al Pago</button>
-    </form>
+                        <label for="nombre">Nombre completo</label>
+                        <input id="nombre" name="nombre" type="text" placeholder="Ejemplo: Ana López" required>
+
+                        <label for="correo">Correo electrónico</label>
+                        <input id="correo" name="correo" type="email" placeholder="ana@email.com" required>
+
+                        <label for="telefono">Teléfono</label>
+                        <input id="telefono" name="telefono" type="tel" placeholder="654 123 123" required>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Dirección de envío</legend>
+
+                        <label for="direccion">Dirección</label>
+                        <input id="direccion" name="direccion" type="text" placeholder="Calle, número y piso" required>
+
+                        <label for="ciudad">Ciudad</label>
+                        <input id="ciudad" name="ciudad" type="text" required>
+
+                        <label for="franja">Franja de entrega</label>
+                        <select id="franja" name="franja" required>
+                            <option value="">Selecciona una opción</option>
+                            <option>Mañana</option>
+                            <option>Tarde</option>
+                            <option>Noche</option>
+                        </select>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Método de pago</legend>
+
+                        <div class="option-row">
+                            <input id="tarjeta" name="pago" type="radio" value="tarjeta" checked>
+                            <label for="tarjeta">Tarjeta bancaria</label>
+                        </div>
+                        <div class="option-row">
+                            <input id="bizum" name="pago" type="radio" value="bizum">
+                            <label for="bizum">Bizum</label>
+                        </div>
+                        <div class="option-row">
+                            <input id="reembolso" name="pago" type="radio" value="reembolso">
+                            <label for="reembolso">Otro</label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset>
+                        <legend>Observaciones</legend>
+
+                        <label for="comentarios">Comentarios para el reparto</label>
+                        <textarea id="comentarios" name="comentarios" rows="4"
+                            placeholder="Ejemplo: llamar al telefonillo o dejar en portería"></textarea>
+
+                        <div class="option-row">
+                            <input id="newsletter" name="newsletter" type="checkbox">
+                            <label for="newsletter">Quiero recibir ofertas semanales por correo</label>
+                        </div>
+                        <div class="option-row">
+                            <input id="condiciones" name="condiciones" type="checkbox" required>
+                            <label for="condiciones">Acepto las condiciones de compra y la política de
+                                privacidad</label>
+                        </div>
+                    </fieldset>
+
+                    <button class="button" type="submit">Confirmar pedido</button>
+                </form>
+            </div>
+        </div>
+    </main>
 </body>
-<footer>
-    <p>&copy; 2024 Mi Tienda en Línea. Todos los derechos reservados.</p>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>&copy; 2026 Mercado Verde. Compra segura y entrega local.</p>
+        <a href="catalogo.html">Seguir comprando</a>
+    </div>
 </footer>
+
 </html>

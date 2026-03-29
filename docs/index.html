@@ -1,55 +1,186 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Verde | Inicio</title>
     <link rel="stylesheet" href="style.css">
-    <title>Carrito de Compras</title>
-    <link rel="stylesheet" href="carrito.css">
 </head>
+
 <body>
-    <header>
-        <h1>Carrito de Compras</h1>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="index.html">Mercado Verde</a>
+            <nav aria-label="Principal">
+                <ul class="nav-list">
+                    <li><a aria-current="page" href="index.html">Inicio</a></li>
+                    <li><a href="carrito.html">Carrito</a></li>
+                    <li><a href="compra.html">Comprar</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <p></p>
-    <img src="carrito.png" alt="Carrito de Compras"> <!--incluyo width y height !-->
 
-    <button class="btn">
-        <a href="carrito.html">Ver Carrito</a>
-    </button>
+    <main>
+        <section class="section">
+            <div class="container section-grid">
+                <div>
+                    <h1>Tu carrito de compra para productos frescos</h1>
+                    <p class="section-intro">Desarrollo de web estatica de carrito de compra personalizado. Simula un
+                        carrito, compra con formulario y pensado para tamaño de ordenador y móvil. </p>
+                    <div class="actions">
+                        <a class="button" href="catalogo.html">Ver catálogo</a>
+                        <a class="button button-secondary" href="carrito.html">Ir al carrito</a>
+                    </div>
+                </div>
+                <figure class="media-card">
+                    <img src="media/mercado.jpg"
+                        alt="Ilustración de una tienda con bolsas de compra y productos frescos.">
+                    <figcaption>Mercado Verde ofrece frutas, verduras y lotes semanales con envío a domicilio.
+                    </figcaption>
+                </figure>
+            </div>
+        </section>
+    </main>
 
-    <button class = "btn">
-        <a href="compra.html">Pagar</a>
-    </button>
+    <main>
+        <section class="section">
+            <div class="container">
+                <h2>Ofertas destacadas de la semana</h2>
+                <div class="table-div">
+                    <table>
+                        <caption>Promociones principales disponibles en el carrito</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Formato</th>
+                                <th scope="col">Precio habitual</th>
+                                <th scope="col">Precio oferta</th>
+                                <th scope="col">Descuento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Caja de verduras</th>
+                                <td>5 kg</td>
+                                <td>18,90 €</td>
+                                <td>15,90 €</td>
+                                <td>16 %</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Pack desayuno</th>
+                                <td>6 unidades</td>
+                                <td>12,50 €</td>
+                                <td>10,90 €</td>
+                                <td>13 %</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Fruta de temporada</th>
+                                <td>3 kg</td>
+                                <td>14,20 €</td>
+                                <td>11,80 €</td>
+                                <td>17 %</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Lote ecológico</th>
+                                <td>8 productos</td>
+                                <td>22,00 €</td>
+                                <td>18,50 €</td>
+                                <td>15 %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+    <main class="section">
+        <section>
+            <div class="container">
+                <h1 style="text-align: center;">Catálogo de temporada</h1>
+                <section class="product-grid" aria-label="Listado de productos">
+                    <article class="product-card">
+                        <h2>Caja de verduras</h2>
+                        <p>Selección semanal con tomate, calabacín, cebolla, espinaca y pimiento.</p>
+                        <div class="price-div">
+                            <span class="price">15,90 €</span>
+                            <span>5 kg</span>
+                        </div>
+                        <a class="button" href="carrito.html">Añadir al carrito</a>
+                    </article>
 
-    <h2>Top productos</h2>
+                    <article class="product-card">
+                        <h2>Pack desayuno</h2>
+                        <p>Granola, yogur natural, pan artesano y mermelada de temporada.</p>
+                        <div class="price-div">
+                            <span class="price">10,90 €</span>
+                            <span>6 unidades</span>
+                        </div>
+                        <a class="button" href="carrito.html">Añadir al carrito</a>
+                    </article>
 
-    <h2>Descuentos</h2>
-    <table>
-        <tr>
-            <th>Producto</th>
-            <th>Precio</th>
-            <th>Cantidad</th>
-            <th>Total</th>
-        </tr>
-        <tr>
-            <td>Producto 1</td>
-            <td>$10.00</td>
-            <td>2</td>
-            <td>$20.00</td>
-        </tr>
-        <tr>
-            <td>Producto 2</td>
-            <td>$15.00</td>
-            <td>1</td>
-            <td>$15.00</td>
-        </tr>
-        <!-- Agrega más productos según sea necesario -->
-    </table>
+                    <article class="product-card">
+                        <h2>Lote ecológico</h2>
+                        <p>Combinación de productos certificados con cultivo responsable y local.</p>
+                        <div class="price-div">
+                            <span class="price">18,50 €</span>
+                            <span>8 productos</span>
+                        </div>
+                        <a class="button" href="carrito.html">Añadir al carrito</a>
+                    </article>
+
+                    <article class="product-card">
+                        <h2>Fruta fresca</h2>
+                        <p>Naranjas, fresas y manzanas listas para consumo durante la semana.</p>
+                        <div class="price-div">
+                            <span class="price">11,80 €</span>
+                            <span>3 kg</span>
+                        </div>
+                        <a class="button" href="carrito.html">Añadir al carrito</a>
+                    </article>
+
+                    <article class="product-card">
+                        <h2>Bolsa reutilizable</h2>
+                        <p>Complemento pensado para compras sostenibles y transporte cómodo.</p>
+                        <div class="price-div">
+                            <span class="price">0,60 €</span>
+                            <span>1 unidad</span>
+                        </div>
+                        <a class="button" href="carrito.html">Añadir al carrito</a>
+                    </article>
+
+                    <article class="product-card">
+                        <h2>Menú semanal</h2>
+                        <p>Lote equilibrado para preparar almuerzos saludables durante cinco días.</p>
+                        <div class="price-div">
+                            <span class="price">24,90 €</span>
+                            <span>5 menús</span>
+                        </div>
+                        <a class="button" href="carrito.html">Añadir al carrito</a>
+                    </article>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <main class="section">
+        <section class="section">
+            <div class="container">
+                <video class="video-principal" controls muted preload="metadata">
+                    <source src="media/campo.mp4" type="video/mp4">
+                    Tu navegador no puede reproducir este vídeo.
+                </video>
+            </div>
+        </section>
+    </main>
 
 </body>
-<footer>
-    <p>&copy; 2024 Carrito de Compras. Todos los derechos reservados.</p>
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <p>&copy; 2026 Mercado Verde. Práctica de HTML y CSS sobre un carrito de compra.</p>
+        <a href="compra.html">Finalizar pedido</a>
+    </div>
 </footer>
+
 </html>
