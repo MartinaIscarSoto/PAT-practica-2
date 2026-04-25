@@ -1,4 +1,4 @@
-package edu.comillas.icai.gitt.pat.spring.practica2.model;
+package edu.comillas.icai.gitt.pat.spring.practica2.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

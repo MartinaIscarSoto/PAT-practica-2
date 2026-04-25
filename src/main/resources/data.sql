@@ -1,0 +1,1 @@
+INSERT INTO carrito (id_usuario, correo_usuario, total_precio) VALUES (999, 'admin@mercadoverde.com', 0.0);

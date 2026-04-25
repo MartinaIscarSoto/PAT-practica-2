@@ -1,5 +1,11 @@
+package edu.comillas.icai.gitt.pat.spring.practica2.entity;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import lombok.Data;
 
 @Data
 @Entity
@@ -25,8 +31,9 @@ public class LineaCarrito {
     @Column(nullable = false)
     public Double costeLinea = 0.0;
 
+    // En LineaCarrito.java (El Dueño)
     @ManyToOne
-    @JoinColumn(name = "id_carrito", nullable = false) // Una línea siempre debe pertenecer a un carrito
+    @JoinColumn(name = "id_carrito") // "Yo soy el dueño y controlo esta columna en la base de datos"
     @JsonIgnore
     public Carrito carrito;
 

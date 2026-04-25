@@ -1,18 +1,21 @@
 package edu.comillas.icai.gitt.pat.spring.practica2.controller;
 
-import edu.comillas.icai.gitt.pat.spring.practica2.model.Carrito;
-import edu.comillas.icai.gitt.pat.spring.practica2.model.LineaCarrito;
+import edu.comillas.icai.gitt.pat.spring.practica2.entity.Carrito;
+import edu.comillas.icai.gitt.pat.spring.practica2.entity.LineaCarrito;
 import edu.comillas.icai.gitt.pat.spring.practica2.service.CarritoService;
 import jakarta.validation.Valid; // ¡Importante!
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/carrito")
+@CrossOrigin(origins = "*")
 public class CarritoController {
-    private Logger logger = LoggerFactory.getLogger(getClass());
+    //private Logger logger = LoggerFactory.getLogger(getClass());
     /* logger.error("Cuando se produce un error inesperado en la lógica que hay que revisar", exception);
     logger.warn("Cuando la lógica detecta algo que hay que mantener");
     logger.info("Información importante para hacer seguimiento de la ejecución");
@@ -53,7 +56,7 @@ public class CarritoController {
             Carrito actualizado = carritoService.añadirLinea(id, linea);
             return ResponseEntity.ok(actualizado);
         } catch (Exception e) {
-            log.error("Error al añadir línea: {}", e.getMessage());
+            //log.error("Error al añadir línea: {}", e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body("No se pudo añadir la línea. Revisa los datos.");
         }

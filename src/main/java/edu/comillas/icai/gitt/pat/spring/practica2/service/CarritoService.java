@@ -1,10 +1,12 @@
 package edu.comillas.icai.gitt.pat.spring.practica2.service;
 
-import edu.comillas.icai.gitt.pat.spring.practica2.model.Carrito;
-import edu.comillas.icai.gitt.pat.spring.practica2.model.LineaCarrito;
+import edu.comillas.icai.gitt.pat.spring.practica2.entity.Carrito;
+import edu.comillas.icai.gitt.pat.spring.practica2.entity.LineaCarrito;
 import edu.comillas.icai.gitt.pat.spring.practica2.repository.CarritoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CarritoService {
@@ -13,9 +15,9 @@ public class CarritoService {
     private CarritoRepository carritoRepository;
 
     public List<Carrito> obtenerTodos() {
-        return carritoRepository.findAll();
+        // Forzamos la conversión de Iterable a List
+        return (List<Carrito>) carritoRepository.findAll();
     }
-
     public Carrito crearCarrito(Carrito carrito) {
         return carritoRepository.save(carrito);
     }

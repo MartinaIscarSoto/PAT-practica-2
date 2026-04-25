@@ -32,12 +32,10 @@
                 <section class="summary-card">
                     <h2>Resumen del pedido</h2>
                     <ul class="summary-list">
-                        <li>3 productos en el carrito</li>
-                        <li>Entrega prevista en 24/48 horas</li>
+                        <li><span id="resumen-cantidad">0</span> productos en el carrito</li>                        <li>Entrega prevista en 24/48 horas</li>
                         <li>Descuento aplicado por compra semanal</li>
                     </ul>
-                    <p class="price-total">Total estimado: <strong>27,40 €</strong></p>
-                    <a class="button button-secondary" href="carrito.html">Volver al carrito</a>
+                    <p class="price-total">Total estimado: <strong id="resumen-total">0,00 €</strong></p>                    <a class="button button-secondary" href="carrito.html">Volver al carrito</a>
                 </section>
 
                 <form class="checkout-form" action="#" method="get">
@@ -112,6 +110,7 @@
             </div>
         </div>
     </main>
+    <script src="script.js"></script>
 </body>
 
 <footer class="site-footer">
