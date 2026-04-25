@@ -1,4 +1,3 @@
-// Configuración de la URL base de tu API
 const API_URL = 'http://localhost:8080/api/carrito';
 
 // Diccionario para mapear los nombres del HTML con un ID numérico para el backend
@@ -22,28 +21,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const path = window.location.pathname;
 
-    // Detectar en qué página estamos para ejecutar la lógica correspondiente
     if (path.includes('catalogo.html')) {
         configurarBotonesCatalogo();
     } else if (path.includes('carrito.html')) {
         cargarCarrito();
     } else if (path.includes('compra.html')) {
-        // AÑADIMOS ESTA NUEVA LÍNEA
         cargarResumenCompra();
     }
 });
 
-/**
- * INICIALIZACIÓN: Crea un carrito con los datos obligatorios del backend
- */
+
 async function inicializarCarrito() {
     let carritoId = localStorage.getItem('carritoId');
 
     if (!carritoId) {
         try {
-            // Tu clase Carrito EXIGE un idUsuario y un correoUsuario válidos
+            // clase Carrito necesita un idUsuario y un correoUsuario válidos
             const datosNuevoCarrito = {
-                idUsuario: 101, // Un ID ficticio para la práctica
+                idUsuario: 101, // me lo invento
                 correoUsuario: "alumno@mercadoverde.com"
             };
 
@@ -66,9 +61,6 @@ async function inicializarCarrito() {
     }
 }
 
-/**
- * CATÁLOGO: Configura los botones de "Añadir al carrito"
- */
 function configurarBotonesCatalogo() {
     const botones = document.querySelectorAll('.product-card .button');
 
@@ -82,24 +74,20 @@ function configurarBotonesCatalogo() {
             const precioTexto = card.querySelector('.price').innerText;
             const precio = parseFloat(precioTexto.replace(',', '.').replace(' €', ''));
 
-            // Construimos el JSON respetando los nombres de tu clase LineaCarrito de Java
             const linea = {
-                idArticulo: catalogoProductos[nombre] || 99, // Mapeamos el nombre al ID
+                idArticulo: catalogoProductos[nombre] || 99,
                 precioUnitario: precio,
                 unidades: 1
             };
 
             await añadirProductoAlCarrito(linea);
-
             // Redirigir al carrito tras añadir
-            window.location.href = 'carrito.html';
+            //window.location.href = 'carrito.html';
         });
     });
 }
 
-/**
- * Llama a la API (POST) para añadir una línea
- */
+
 async function añadirProductoAlCarrito(linea) {
     const carritoId = localStorage.getItem('carritoId');
     try {
@@ -117,18 +105,16 @@ async function añadirProductoAlCarrito(linea) {
     }
 }
 
-/**
- * CARRITO: Carga los datos del backend y pinta la tabla HTML
- */
 async function cargarCarrito() {
     const carritoId = parseInt(localStorage.getItem('carritoId'));
-    if (!carritoId) return;
+    if (!carritoId) {
+        return;
+    }
 
     try {
         const response = await fetch(API_URL);
         const carritos = await response.json();
 
-        // Buscamos nuestro carrito entre todos los devueltos
         const miCarrito = carritos.find(c => c.id === carritoId);
 
         if (miCarrito) {
@@ -139,9 +125,7 @@ async function cargarCarrito() {
     }
 }
 
-/**
- * Manipulación del DOM para pintar la tabla
- */
+//DOM
 function pintarTablaCarrito(carrito) {
     const tbody = document.querySelector('tbody');
     const tfootTotal = document.querySelector('tfoot td');
@@ -149,7 +133,7 @@ function pintarTablaCarrito(carrito) {
     tbody.innerHTML = '';
     let sumaTotal = 0;
 
-    // En tu Java, la lista se llama "lineas"
+    //lineas es lista del carrito en el backend
     const lineas = carrito.lineas || [];
 
     if (lineas.length === 0) {
@@ -159,11 +143,15 @@ function pintarTablaCarrito(carrito) {
     }
 
     lineas.forEach(linea => {
-        // Recuperamos el nombre usando el ID numérico guardado en la base de datos
         const nombreDelProducto = obtenerNombrePorId(linea.idArticulo);
 
-        // Calculamos subtotal (si el backend no devolvió costeLinea actualizado)
-        const subtotal = linea.costeLinea > 0 ? linea.costeLinea : (linea.precioUnitario * linea.unidades);
+        let subtotal;
+
+        if (linea.costeLinea > 0) {
+            subtotal = linea.costeLinea;
+        } else {
+            subtotal = linea.precioUnitario * linea.unidades;
+        }
         sumaTotal += subtotal;
 
         const tr = document.createElement('tr');
@@ -179,13 +167,11 @@ function pintarTablaCarrito(carrito) {
         tbody.appendChild(tr);
     });
 
-    // Actualizamos el total general
+    // Actualizamos el total
     tfootTotal.innerText = `${sumaTotal.toFixed(2).replace('.', ',')} €`;
 }
 
-/**
- * Llama a la API (DELETE) para borrar un producto
- */
+//para borrar un producto
 async function eliminarLinea(carritoId, lineaId) {
     try {
         const response = await fetch(`${API_URL}/${carritoId}/lineas/${lineaId}`, {
@@ -193,7 +179,7 @@ async function eliminarLinea(carritoId, lineaId) {
         });
 
         if (response.ok) {
-            // Recargar la vista de la tabla
+            // Recargar la tabla
             cargarCarrito();
         } else {
             alert("No se pudo eliminar el producto en el backend.");
@@ -203,9 +189,7 @@ async function eliminarLinea(carritoId, lineaId) {
     }
 }
 
-/**
- * COMPRA: Carga los datos del carrito para el resumen final
- */
+//Carga los datos del carrito para el resumen final
 async function cargarResumenCompra() {
     const carritoId = parseInt(localStorage.getItem('carritoId'));
     if (!carritoId) return;
@@ -221,15 +205,21 @@ async function cargarResumenCompra() {
             let cantidadTotalProductos = 0;
             let precioTotalEstimado = 0;
 
-            // Recorremos las líneas para sumar todo
+            // Recorremos las líneas para sumar
             lineas.forEach(linea => {
                 cantidadTotalProductos += linea.unidades;
 
-                const subtotal = linea.costeLinea > 0 ? linea.costeLinea : (linea.precioUnitario * linea.unidades);
+                let subtotal;
+
+                if (linea.costeLinea > 0) {
+                    subtotal = linea.costeLinea;
+                } else {
+                    subtotal = linea.precioUnitario * linea.unidades;
+                }
+
                 precioTotalEstimado += subtotal;
             });
 
-            // Escribimos los resultados en el HTML usando los ID que creamos
             const elementoCantidad = document.getElementById('resumen-cantidad');
             const elementoTotal = document.getElementById('resumen-total');
 
